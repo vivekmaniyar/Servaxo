@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Order Detail</title>
+        <ui:include src="userCss.xhtml"/>
+    </h:head>
+    <h:body class="res layout-1 layout-subpage">
+        <div id="wrapper" class="wrapper-fluid banners-effect-5">
+            <ui:include src="userHeader.xhtml"/>
+            <!-- Main Container  -->
+            <div class="main-container container">
+                <ul class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-home"></i></a></li>
+                    <li><a href="#">Order Infomation</a></li>
+                </ul>
+
+                <div class="row">
+                    <!--Middle Part Start-->
+                    <div id="content" class="col-sm-12">
+                        <h2 class="title">Order Information</h2>
+
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <td colspan="2" class="text-left">Order Details</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="width: 50%;" class="text-left"> <b>Order ID:</b> #{userorderbean.currentOrder.orderId}
+                                        <br/>
+                                        <b>Date Added:</b> #{userorderbean.currentOrder.orderDatetime}</td>
+                                    <td style="width: 50%;" class="text-left"> <b>Payment Method:</b> #{userorderbean.currentOrder.paymode}
+                                        <br/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <td style="width: 50%; vertical-align: top;" class="text-left">Payment Address</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-left">#{userorderbean.currentOrder.userId.name}
+                                        <br/>#{userorderbean.currentOrder.addressline1}
+                                        <br/>#{userorderbean.currentOrder.addressline2}
+                                        <br/>#{userorderbean.currentOrder.landmark}
+                                        <br/>#{userorderbean.currentOrder.cityId.cityName} - #{userorderbean.currentOrder.pincode}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="table-responsive">
+                            <p:dataTable var="dtl" value="#{userorderbean.orderDetails(userorderbean.currentOrder.orderId)}">
+                                <p:column headerText="Product Name">
+                                    <h:outputLabel value="#{dtl.tblParts.partName}"/>
+                                </p:column>
+                                <p:column headerText="Model" >
+                                    <h:outputLabel value="#{dtl.tblParts.modelId.modelName}"/>
+                                </p:column>
+                                <p:column headerText="Quantity" >
+                                    <h:outputLabel value="#{dtl.qty}"/>
+                                </p:column>
+                                <p:column headerText="Price" >
+                                    <h:outputLabel value="₹ #{dtl.tblParts.price}"/>
+                                    <input type="hidden" value="#{userorderbean.total = userorderbean.total + dtl.tblParts.price}" name="txtTot" id="txtTot"/>
+                                </p:column>
+                            </p:dataTable>
+                            
+                            <br/>
+                        </div>
+                        <h3>Order History</h3>
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <td class="text-left">Total</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="text-right">
+                                    <td class="text-left">₹ #{userorderbean.total}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="buttons clearfix">
+                            <div class="pull-left"><a class="btn btn-primary" href="userOrders.jsf">Back</a>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <!--Middle Part End-->
+                    <!--Right Part Start -->
+
+                    <!--Right Part End -->
+                </div>
+            </div>
+            <!-- //Main Container -->
+            <ui:include src="userFooter.xhtml"/>
+        </div>
+        <ui:include src="userScripts.xhtml"/>
+        <p:dataTable var="part" value="#{userorderbean.currentOrder}">
+            <p:column headerText="Part Name">
+
+            </p:column>
+        </p:dataTable>
+    </h:body>
+</html>
+

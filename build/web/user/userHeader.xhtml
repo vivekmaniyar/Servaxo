@@ -1,0 +1,204 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <!-- Header Container  -->
+        <header id="header" class=" typeheader-4">
+
+            <!-- Header Top -->
+            <div class="header-top hidden-compact"> 
+                <div class="container">
+                    <div class="row">
+                        <div class="header-top-left col-lg-3 col-md-4 col-sm-5 hidden-xs">           
+                            <div class="telephone " >
+                                <ul class="socials">
+                                    <li class="facebook"><a href="https://www.facebook.com/smartaddons.page" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                    <li class="twitter"><a href="https://twitter.com/smartaddons" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                    <li class="google_plus"><a href="https://plus.google.com/u/0/+Smartaddons/posts" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                                    <li class="pinterest"><a href="https://www.pinterest.com/smartaddons/" target="_blank"><i class="fa fa-pinterest-p"></i></a></li>
+                                    <li class="instagram"><a href="#" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                                    <li class="linkedin"><a href="#" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>             
+
+
+                        </div>
+                        <div class="header-top-right col-lg-9 col-md-8 col-sm-7 col-xs-12">
+                            <div class="row ">
+                                <div class="col-lg-8">&nbsp;</div>
+                                <div class="col-lg-4">
+                                    <div class="row">
+                                        <div class="col-lg-8"><p class="text-right">Welcome <b>#{session.getAttribute("username")}</b></p></div>
+                                        <div class="col-lg-4"  style="padding-top: 15px; padding-left: 15px;">
+                                            <h:form>
+                                                <h:commandButton class="btn btn-danger btn-sm" action="#{loginbean.logout()}" value="Logout"/>
+                                            </h:form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>      
+            </div>
+            <div class="header-middle">
+                <div class="container">
+                    <div class="row">           
+                        <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                            <div class="logo">
+                                <a href="index-2.html"><img src="image/catalog/logo.png" title="Your Store" alt="Your Store" /></a>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12 middle-right">
+                            <div class="search-header-w">
+                                <div class="icon-search hidden-lg hidden-md"><i class="fa fa-search"></i></div>                                
+
+                                <div id="sosearchpro" class="sosearchpro-wrapper so-search ">
+                                    <h:form>
+                                        <div id="search0" class="search input-group form-group">
+                                            <input class="autosearch-input form-control" type="text" value="" size="50" autocomplete="off" placeholder="Search Part Here..." name="search"/>
+
+                                            <button type="submit" class="button-search btn btn-primary" name="submit_search"><i class="fa fa-search"></i></button>
+
+                                        </div>
+                                        <input type="hidden" name="route" value="product/search" />
+                                    </h:form>
+                                </div>
+                            </div>
+
+                            <div class="shopping_cart">
+                                <div id="cart" class="btn-shopping-cart">
+
+                                    <a href="userCart.jsf" class="btn-group top_cart">
+                                        <div class="shopcart">
+                                            <span class="icon-c">
+                                                <i class="fa fa-shopping-basket"></i>
+                                            </span>
+                                            <div class="shopcart-inner">
+                                                <p class="text-shopping-cart">
+                                                    My cart
+                                                </p>
+
+                                                <span class="total-shopping-cart cart-total-full">
+                                                    <span class="items_cart2"> item(s)</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!--<div class="wishlist hidden-md hidden-sm hidden-xs"><a href="#" id="wishlist-total" class="top-link-wishlist" title="Wish List (0) "><i class="fa fa-heart"></i></a></div>-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-bottom hidden-compact"> 
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                            <div class="menu-vertical-w">   
+                                <div class="responsive so-megamenu megamenu-style-dev ">
+                                    <div class="so-vertical-menu ">
+                                        <nav class="navbar-default">    
+
+                                            <div class="container-megamenu vertical">
+                                            </div>
+                                        </nav>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-9 col-sm-6 col-xs-6">
+                            <div class="main-menu-w">
+                                <div class="responsive so-megamenu megamenu-style-dev">
+                                    <nav class="navbar-default">
+                                        <div class=" container-megamenu  horizontal open ">
+                                            <div class="navbar-header">
+                                                <button type="button" id="show-megamenu" data-toggle="collapse" class="navbar-toggle">
+                                                    <span class="icon-bar"></span>
+                                                    <span class="icon-bar"></span>
+                                                    <span class="icon-bar"></span>
+                                                </button>
+                                            </div>
+
+                                            <div class="megamenu-wrapper">
+                                                <span id="remove-megamenu" class="fa fa-times"></span>
+                                                <div class="megamenu-pattern">
+                                                    <div class="container-mega">
+                                                        <ul class="megamenu" data-transition="slide" data-animationtime="250">
+                                                            <li class="with-sub-menu hover">
+                                                                <a href="home.jsf">Home</a>
+                                                            </li>
+                                                            <li class="with-sub-menu hover">
+                                                                <p class="close-menu"></p>
+                                                                <a href="partGrid.jsf" class="clearfix">
+                                                                    <strong>Shop Parts</strong>                                                                
+                                                                    <b class="caret"></b>
+                                                                </a>
+                                                            </li>
+                                                            <li class="with-sub-menu hover">
+                                                                <p class="close-menu"></p>
+                                                                <a href="serviceGrid.jsf" class="clearfix">
+                                                                    <strong>Our Services</strong>
+                                                                    <b class="caret"></b>
+                                                                </a>
+                                                            </li>
+                                                            <li class="with-sub-menu hover">
+                                                                <p class="close-menu"></p>
+                                                                <a href="#" class="clearfix">
+                                                                    <strong>Your Account</strong>                                                             
+
+                                                                    <b class="caret"></b>
+                                                                </a>
+                                                                <div class="sub-menu" style="width: 25%; display: none;">
+                                                                    <div class="content">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-12 hover-menu">
+                                                                                        <div class="menu">
+                                                                                            <ul>
+                                                                                                <li><a href="userOrders.jsf"  class="main-menu">Previous Orders</a></li>
+                                                                                                <li><a href="userServiceOrders.jsf"  class="main-menu">Previous Services</a></li>
+                                                                                            </ul>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="with-sub-menu hover">
+                                                                <p class="close-menu"></p>
+                                                                <a href="aboutUs.jsf" class="clearfix">
+                                                                    <strong>How Servaxo Works?</strong>                                                             
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+
+            </div>
+
+        </header>
+        <!-- //Header Container  -->
+    </h:body>
+</html>
+

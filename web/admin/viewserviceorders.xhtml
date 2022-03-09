@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+    <title>Admin - Service Orders</title>
+
+    <ui:include src="css.xhtml"/>
+    </h:head>
+    <h:body>
+        <ui:include src="sidebar.xhtml"/>
+        <div class="content ht-100v pd-0">
+            <div class="content-header">
+            </div><!-- content-header -->
+
+            <div class="content-body">
+              <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0">
+                <div class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-30">
+                  <div>
+                    <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+                        <li class="breadcrumb-item"><a href="dashboard.jsf">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Service Orders</li>
+                      </ol>
+                    </nav>
+                    <h4 class="mg-b-0 tx-spacing--1">Service Orders</h4>
+                  </div>
+                </div>
+
+                <div class="row row-xs">
+                    <h:form id="form">
+                      <div class="card crud-demo">
+                          <p:growl id="messages" showDetail="true" />
+                          <p:dataTable id="dt-serviceorders" widgetVar="dtserviceorders" var="serviceorder" value="#{serviceorderbean.viewserviceorders()}" 
+                                       reflow="true" class="table dataTable no-footer" rowKey="#{serviceorder.serviceorderId}" paginator="true" rows="10" rowSelectMode="add" paginatorPosition="bottom" 
+                                       emptyMessage="No Record Found"
+                                       filteredValue="#{serviceorderbean.filteredserviceorders}"
+                                       globalFilterFunction="#{serviceorderbean.globalfilterfunction}">
+                              
+                              <f:facet name="header">
+                 
+                                  <div align="right">
+                                  <span class="filter-container ui-input-icon-left">
+                                      <i class="pi pi-search"></i>
+                                      <p:inputText id="globalFilter" onkeyup="PF('dtserviceorders').filter()" placeholder="search" />
+                                  </span>
+                                  </div>
+                                  
+                              </f:facet>
+                              
+                              <p:column headerText="Order ID">
+                                  <h:outputText value="#{serviceorder.serviceorderId}" />
+                              </p:column>
+                              
+                              <p:column headerText="Order value">
+                                  <h:outputText value="₹#{serviceorder.totalPayment}" />
+                              </p:column>
+                              
+                              <p:column headerText="Vehicle">
+                                  <h:outputText value="#{serviceorder.modelId.modelName}" />
+                              </p:column>
+                              
+                              <p:column headerText="Vehicle No">
+                                  <h:outputText value="#{serviceorder.vehicleNo}" />
+                              </p:column>
+                              
+                              <p:column headerText="Remark">
+                                  <h:outputText value="#{serviceorder.remark}" />
+                              </p:column>
+                              
+                              <p:column headerText="Ordered on">
+                                  <h:outputText value="#{serviceorder.orderdatetime}" />
+                              </p:column>
+                              
+                              <p:column headerText="Status">
+                                  <h:outputText value="#{serviceorder.status}" />
+                                  <p:commandButton styleClass="rounded-button ui-button-secondary ui-button-flat" icon="pi pi-pencil" style="color: black" action="#{serviceorderbean.redirecttoupdate()}">
+                                      <f:setPropertyActionListener value="#{serviceorder}" target="#{serviceorderbean.selectedserviceorders}"/>
+                                  </p:commandButton>
+                              </p:column>
+                          </p:dataTable>
+                      </div>
+                  </h:form>   
+                </div><!-- row -->
+              </div><!-- container -->
+            </div>
+          </div><!-- content -->
+    <ui:include src="scripts.xhtml"/>
+    </h:body>
+</html>
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="ServaxoTestPU" transaction-type="JTA">
+      <jta-data-source>jdbc/Servaxo</jta-data-source>
+    <class>entities.TblOrder</class>
+    <class>entities.TblFeedback</class>
+    <class>entities.TblCompany</class>
+    <class>entities.TblCity</class>
+    <class>entities.TblServiceorder</class>
+    <class>entities.Groupmaster</class>
+    <class>entities.TblState</class>
+    <class>entities.TblParts</class>
+    <class>entities.TblCart</class>
+    <class>entities.TblModel</class>
+    <class>entities.TblServices</class>
+    <class>entities.TblServicelist</class>
+    <class>entities.TblOrderdetail</class>
+    <class>entities.TblServicecart</class>
+    <class>entities.TblPartcategory</class>
+    <class>entities.Usermaster</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+  </persistence-unit>
+</persistence>

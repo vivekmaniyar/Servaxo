@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Service - Update Service</title>
+         <ui:include src="css.xhtml"/>
+    </h:head>
+    <h:body>
+        <ui:include src="sidebar.xhtml"/>
+        <div class="content ht-100v pd-0">
+            <div class="content-header">
+            </div><!-- content-header -->
+
+            <div class="content-body">
+              <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0">
+                <div class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-30">
+                  <div>
+                    <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+                        <li class="breadcrumb-item"><a href="dashboard.jsf">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Services</li>
+                      </ol>
+                    </nav>
+                    <h4 class="mg-b-0 tx-spacing--1">Manage Service - Update Service</h4>
+                  </div>
+                  <div class="d-none d-md-block">
+                      <button class="btn btn-sm pd-x-15 btn-secondary btn-uppercase mg-l-5" onclick="window.location='viewservices.jsf'">View Services</button>
+                  </div>
+                </div>
+
+                <div class="row row-xs">
+                    <div class="col-2">&nbsp;</div>
+                    <div class="col-8">
+                        <h:form>
+                            <div class="form-group">
+                              <label for="formGroupExampleInput" class="d-block">Service Name</label>
+                              <p:inputText class="form-control" placeholder="Enter Service Name" value="#{servicebean.currentservice.serviceName}" />
+                            </div>
+                            <div class="form-group">
+                              <label for="formGroupExampleInput2" class="d-block">Vehicle Type</label>
+                              <p:selectOneRadio id="console" value="#{servicebean.currentservice.type}" unselectable="true">
+                                    <f:selectItem itemLabel="Bike" itemValue="bike"/>
+                                    <f:selectItem itemLabel="Car" itemValue="car"/>
+                              </p:selectOneRadio>
+                            </div>
+                            <div class="form-group">
+                                <label for="description" class="d-block">Description</label>
+                                <p:inputTextarea class="form-control" placeholder="Enter description" value="#{servicebean.currentservice.serviceDescription}" />
+                            </div>
+                            <div class="form-group">
+                              <label for="formGroupExampleInput" class="d-block">Price</label>
+                              <p:inputText class="form-control" placeholder="Enter Price" value="#{servicebean.currentservice.servicePrice}" />
+                            </div>
+                            <div class="form-group">
+                              <label for="formGroupExampleInput2" class="d-block">Available?</label>
+                              <p:selectOneRadio id="console2" value="#{servicebean.currentservice.isactive}" unselectable="true">
+                                    <f:selectItem itemLabel="Yes" itemValue="yes"/>
+                                    <f:selectItem itemLabel="No" itemValue="no"/>
+                              </p:selectOneRadio>
+                            </div>
+                            <p:commandButton styleClass="ui-button-primary" value="Submit" action="#{servicebean.updateservice()}" />&nbsp;
+                            <p:commandButton styleClass="ui-button-secondary" value="Cancel" onclick="window.location='viewservices.jsf'" />
+                        </h:form>
+                     </div>
+                    <div class="col-2">&nbsp;</div>
+                </div><!-- row -->
+              </div><!-- container -->
+            </div>
+          </div><!-- content -->
+        <ui:include src="scripts.xhtml"/>
+    </h:body>
+</html>
+

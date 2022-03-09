@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+    <title>Admin - Models</title>
+
+    <ui:include src="css.xhtml"/>
+    </h:head>
+    <h:body>
+        <ui:include src="sidebar.xhtml"/>
+        <div class="content ht-100v pd-0">
+            <div class="content-header">
+            </div><!-- content-header -->
+
+            <div class="content-body">
+              <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0">
+                <div class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-30">
+                  <div>
+                    <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+                        <li class="breadcrumb-item"><a href="dashboard.jsf">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Models</li>
+                      </ol>
+                    </nav>
+                    <h4 class="mg-b-0 tx-spacing--1">Manage Models - All Models</h4>
+                  </div>
+                  <div class="d-none d-md-block">
+                      <button class="btn btn-sm pd-x-15 btn-primary btn-uppercase mg-l-5" onclick="window.location='addmodel.jsf'"><i data-feather="plus" class="wd-10 mg-r-5"></i> Add New Model</button>
+                  </div>
+                </div>
+
+                <div class="row row-xs">
+                    <h:form id="form">
+                      <div class="card crud-demo">
+                          <p:growl id="messages" showDetail="true" />
+                          <p:dataTable id="dt-models" widgetVar="dtmodels" var="model" value="#{modelbean.viewmodels()}" 
+                                       reflow="true" class="table dataTable no-footer" rowKey="#{model.modelId}" paginator="true" rows="10" rowSelectMode="add" paginatorPosition="bottom" 
+                                       emptyMessage="No Record Found"
+                                       filteredValue="#{modelbean.filteredmodel}"
+                                       globalFilterFunction="#{modelbean.globalfilterfunction}">
+                              
+                              <f:facet name="header">
+                 
+                                  <div align="right">
+                                  <span class="filter-container ui-input-icon-left">
+                                      <i class="pi pi-search"></i>
+                                      <p:inputText id="globalFilter" onkeyup="PF('dtmodels').filter()" placeholder="search" />
+                                  </span>
+                                  </div>
+                                  
+                              </f:facet>
+                              
+                              <p:column headerText="Model Name">
+                                  <h:outputText value="#{model.modelName}" />
+                              </p:column>
+
+                              <p:column headerText="Company Name">
+                                  <h:outputText value="#{model.companyId.companyName}" />
+                              </p:column>
+                              
+                              <p:column headerText="Model Image">
+                                  <p:graphicImage value="/uploads/vehiclemodels/#{model.modelImg}" width="100px" height="100px" alt="#{model.modelName}"/>
+                              </p:column>
+
+                              <p:column headerText="Actions">
+                                  <p:commandButton styleClass="rounded-button ui-button-secondary ui-button-flat" icon="pi pi-pencil" style="color: black" action="#{modelbean.redirecttoupdate()}">
+                                      <f:setPropertyActionListener value="#{model}" target="#{modelbean.currentmodel}"/>
+                                  </p:commandButton>
+                                  <p:commandButton class="rounded-button ui-button-danger ui-button-flat" icon="pi pi-trash" style="color: red" action="#{modelbean.deletemodel(model)}" update="@form"/>
+                              </p:column>
+                          </p:dataTable>
+                      </div>
+                  </h:form>   
+                </div><!-- row -->
+              </div><!-- container -->
+            </div>
+          </div><!-- content -->
+    <ui:include src="scripts.xhtml"/>
+    </h:body>
+</html>
+

@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>State - Add State</title>
+         <ui:include src="css.xhtml"/>
+    </h:head>
+    <h:body>
+        <ui:include src="sidebar.xhtml"/>
+        <div class="content ht-100v pd-0">
+            <div class="content-header">
+            </div><!-- content-header -->
+
+            <div class="content-body">
+              <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0">
+                <div class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-30">
+                  <div>
+                    <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+                        <li class="breadcrumb-item"><a href="dashboard.jsf">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">States</li>
+                      </ol>
+                    </nav>
+                    <h4 class="mg-b-0 tx-spacing--1">Manage States - Add State</h4>
+                  </div>
+                  <div class="d-none d-md-block">
+                      <button class="btn btn-sm pd-x-15 btn-secondary btn-uppercase mg-l-5" onclick="window.location='viewStates.jsf'">View States</button>
+                  </div>
+                </div>
+
+                <div class="row row-xs">
+                    <div class="col-2">&nbsp;</div>
+                    <div class="col-8">
+                        <h:form>
+                            <div class="form-group">
+                              <label for="formGroupExampleInput" class="d-block">State Name</label>
+                              <p:inputText class="form-control" placeholder="Enter State Name" value="#{statebean.newstate.stateName}" />
+                            </div>
+                            <div class="form-group">
+                              <label for="formGroupExampleInput2" class="d-block">State Code</label>
+                              <p:inputText class="form-control" placeholder="Enter State Code" value="#{statebean.newstate.stateCode}"/>
+                            </div>
+                            <p:commandButton styleClass="ui-button-primary" value="Submit" action="#{statebean.addstate()}" />&nbsp;
+                            <p:commandButton styleClass="ui-button-secondary" value="Cancel" onclick="window.location='viewStates.jsf'" />
+                        </h:form>
+                     </div>
+                    <div class="col-2">&nbsp;</div>
+                </div><!-- row -->
+              </div><!-- container -->
+            </div>
+          </div><!-- content -->
+        <ui:include src="scripts.xhtml"/>
+    </h:body>
+</html>
+

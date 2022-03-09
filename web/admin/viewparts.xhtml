@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+    <title>Admin - Parts</title>
+
+    <ui:include src="css.xhtml"/>
+    </h:head>
+    <h:body>
+        <ui:include src="sidebar.xhtml"/>
+        <div class="content ht-100v pd-0">
+            <div class="content-header">
+            </div><!-- content-header -->
+
+            <div class="content-body">
+              <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0">
+                <div class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-30">
+                  <div>
+                    <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+                        <li class="breadcrumb-item"><a href="dashboard.jsf">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Parts</li>
+                      </ol>
+                    </nav>
+                    <h4 class="mg-b-0 tx-spacing--1">Manage Parts - All Parts</h4>
+                  </div>
+                  <div class="d-none d-md-block">
+                      <button class="btn btn-sm pd-x-15 btn-primary btn-uppercase mg-l-5" onclick="window.location='addpart.jsf'"><i data-feather="plus" class="wd-10 mg-r-5"></i> Add New Part</button>
+                  </div>
+                </div>
+
+                <div class="row row-xs">
+                    <h:form id="form">
+                      <div class="card crud-demo">
+                          <p:growl id="messages" showDetail="true" />
+                          <p:dataTable id="dt-parts" widgetVar="dtparts" var="part" value="#{partbean.viewparts()}" 
+                                       reflow="true" class="table dataTable no-footer" rowKey="#{part.partId}" paginator="true" rows="10" rowSelectMode="add" paginatorPosition="bottom" 
+                                       emptyMessage="No Record Found"
+                                       filteredValue="#{partbean.filteredparts}"
+                                       globalFilterFunction="#{partbean.globalfilterfunction}">
+                              
+                              <f:facet name="header">
+                 
+                                  <div align="right">
+                                  <span class="filter-container ui-input-icon-left">
+                                      <i class="pi pi-search"></i>
+                                      <p:inputText id="globalFilter" onkeyup="PF('dtparts').filter()" placeholder="search" />
+                                  </span>
+                                  </div>
+                                  
+                              </f:facet>
+                              
+                              <p:column style="width:2rem">
+                                <p:rowToggler/>
+                              </p:column>
+                              
+                              <p:column headerText="Part Name">
+                                  <h:outputText value="#{part.partName}" />
+                              </p:column>
+
+                              <p:column headerText="Price">
+                                  <h:outputText value="₹#{part.price}" />
+                              </p:column>
+                              
+                              <p:column headerText="Model">
+                                  <h:outputText value="#{part.modelId.modelName}" />
+                              </p:column>
+                              
+                              <p:column headerText="Category">
+                                  <h:outputText value="#{part.partcategoryId.categoryName}" />
+                              </p:column>
+                              
+                              <p:column headerText="Manual">
+                                  <h:outputLink value="/ServaxoTest/uploads/partmanuals/#{part.partManualPdf}" target="_blank">#{part.partManualPdf}</h:outputLink>
+                              </p:column>
+                              
+                              <p:column headerText="Video URL">
+                                  <h:outputLink value="#{part.videoUrl}" target="_blank">#{part.videoUrl}</h:outputLink>
+                              </p:column>
+                              
+                              <p:column headerText="In Stock?">
+                                  <h:outputText value="#{part.isactive}" />
+                                  <p:commandButton styleClass="rounded-button ui-button-secondary ui-button-flat" icon="pi pi-pencil" style="color: black" action="#{partbean.changestatus()}">
+                                      <f:setPropertyActionListener value="#{part}" target="#{partbean.currentpart}"/>
+                                  </p:commandButton>
+                              </p:column>
+                              
+                              <p:column headerText="Actions">
+                                  <p:commandButton styleClass="rounded-button ui-button-secondary ui-button-flat" icon="pi pi-pencil" style="color: black" action="#{partbean.redirecttoupdate()}">
+                                      <f:setPropertyActionListener value="#{part}" target="#{partbean.currentpart}"/>
+                                  </p:commandButton>
+                                  <p:commandButton class="rounded-button ui-button-danger ui-button-flat" icon="pi pi-trash" style="color: red" action="#{partbean.deletepart(part)}" update="@form"/>
+                              </p:column>
+                              
+                              <p:rowExpansion>
+                                  <div class="row">
+                                      <div class="col-4">
+                                          <div class="row">
+                                              <div class="col-4">
+                                                  <h:graphicImage value="/uploads/parts/#{part.img1}" height="100px" width="100px" alt="#{part.partName}"/>&nbsp;
+                                              </div>
+                                              <div class="col-4">
+                                                <h:graphicImage value="/uploads/parts/#{part.img2}" height="100px" width="100px" alt="#{part.partName}"/>&nbsp;
+                                              </div>
+                                              <div class="col-4">
+                                                <h:graphicImage value="/uploads/parts/#{part.img3}" height="100px" width="100px" alt="#{part.partName}"/>&nbsp;
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="col-8">
+                                          <h:inputTextarea value="#{part.partDescription}" class="form-control" disabled="true" rows="3"/>
+                                      </div>
+                                  </div>
+                              </p:rowExpansion>
+                          </p:dataTable>
+                      </div>
+                  </h:form>   
+                </div><!-- row -->
+              </div><!-- container -->
+            </div>
+          </div><!-- content -->
+    <ui:include src="scripts.xhtml"/>
+    </h:body>
+</html>
+

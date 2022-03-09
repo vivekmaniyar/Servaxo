@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+    <title>Admin - Companies</title>
+
+    <ui:include src="css.xhtml"/>
+    </h:head>
+    <h:body>
+        <ui:include src="sidebar.xhtml"/>
+        <div class="content ht-100v pd-0">
+            <div class="content-header">
+            </div><!-- content-header -->
+
+            <div class="content-body">
+              <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0">
+                <div class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-30">
+                  <div>
+                    <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+                        <li class="breadcrumb-item"><a href="dashboard.jsf">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Companies</li>
+                      </ol>
+                    </nav>
+                    <h4 class="mg-b-0 tx-spacing--1">Manage Companies - All Companies</h4>
+                  </div>
+                  <div class="d-none d-md-block">
+                      <button class="btn btn-sm pd-x-15 btn-primary btn-uppercase mg-l-5" onclick="window.location='addcompany.jsf'"><i data-feather="plus" class="wd-10 mg-r-5"></i> Add New Company</button>
+                  </div>
+                </div>
+
+                <div class="row row-xs">
+                    <h:form id="form">
+                      <div class="card crud-demo">
+                          <p:growl id="messages" showDetail="true" />
+                          <p:dataTable id="dt-companies" widgetVar="dtcompanies" var="company" value="#{companybean.viewcompanies()}" 
+                                       reflow="true" class="table dataTable no-footer" rowKey="#{company.companyId}" paginator="true" rows="10" rowSelectMode="add" paginatorPosition="bottom" 
+                                       emptyMessage="No Record Found"
+                                       filteredValue="#{companybean.filteredcompany}"
+                                       globalFilterFunction="#{companybean.globalfilterfunction}">
+                              
+                              <f:facet name="header">
+                 
+                                  <div align="right">
+                                  <span class="filter-container ui-input-icon-left">
+                                      <i class="pi pi-search"></i>
+                                      <p:inputText id="globalFilter" onkeyup="PF('dtcompanies').filter()" placeholder="search" />
+                                  </span>
+                                  </div>
+                                  
+                              </f:facet>
+                              
+                              <p:column headerText="Company Name">
+                                  <h:outputText value="#{company.companyName}" />
+                              </p:column>
+
+                              <p:column headerText="Company Type">
+                                  <h:outputText value="#{company.companyType}" />
+                              </p:column>
+                              
+                              <p:column headerText="Company Logo">
+                                  <p:graphicImage value="/uploads/companylogos/#{company.companyLogo}" width="100px" height="100px" alt="#{company.companyName}"/>
+                              </p:column>
+                              
+                              <p:column headerText="Actions">
+                                  <p:commandButton styleClass="rounded-button ui-button-secondary ui-button-flat" icon="pi pi-pencil" style="color: black" action="#{companybean.redirecttoupdate()}">
+                                      <f:setPropertyActionListener value="#{company}" target="#{companybean.currentcompany}"/>
+                                  </p:commandButton>
+                                  <p:commandButton class="rounded-button ui-button-danger ui-button-flat" icon="pi pi-trash" style="color: red" action="#{companybean.deletecompany(company)}" update="@form"/>
+                              </p:column>
+                          </p:dataTable>
+                      </div>
+                  </h:form>   
+                </div><!-- row -->
+              </div><!-- container -->
+            </div>
+          </div><!-- content -->
+    <ui:include src="scripts.xhtml"/>
+    </h:body>
+</html>
+

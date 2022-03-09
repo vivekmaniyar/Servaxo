@@ -1,0 +1,220 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Home - Servaxo</title>
+        <ui:include src="userCss.xhtml"/>
+    </h:head>
+    <h:body>
+        <body class="common-home res layout-4"> 
+            <div id="wrapper" class="wrapper-fluid banners-effect-5">
+                <ui:include src="userHeader.xhtml"/>
+                <!-- Main Container  -->
+            <div class="main-container">
+                <div id="content">
+                    <div class="slider-container"> 
+                        <div class="module sohomepage-slider ">
+                            <div class="yt-content-slider"  data-rtl="no" data-autoplay="no" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column00="1" data-items_column0="1" data-items_column1="1" data-items_column2="1"  data-items_column3="1" data-items_column4="1" data-arrows="yes" data-pagination="no" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
+                                <div class="yt-content-slide">
+                                    <a href="#"><img src="image/catalog/slideshow/home4/slider-1.jpg" alt="slider1" class="img-responsive"/></a>
+                                </div>
+                                <div class="yt-content-slide">
+                                    <a href="#"><img src="image/catalog/slideshow/home4/slider-2.jpg" alt="slider2" class="img-responsive"/></a>
+                                </div>
+                                <div class="yt-content-slide">
+                                    <a href="#"><img src="image/catalog/slideshow/home4/slider-3.jpg" alt="slider3" class="img-responsive"/></a>
+                                </div>
+                            </div>
+
+                            <div class="loadeding"></div>
+                        </div>            
+                    </div>
+                    <div class="content-main-w">
+<!--                        <div class="container">
+                            <ui:include src="dropdowns.xhtml"/>
+                        </div>-->
+
+                        <div class="container">
+                            <!-- Extra Best seller -->
+                            <div class="module extra-layout1">
+                                <div class="pre_text">
+                                    Top sale in the week              
+                                </div>                 
+                                <h3 class="modtitle"><span>RECENT PRODUCTS</span></h3>
+                                <div class="modcontent">
+                                    <div class="product card">
+                                        <h:form id="form">
+                                            <p:dataGrid var="product" value="#{userHome.allParts()}" columns="3" layout="grid"
+                                                        rows="6" paginator="true" paginatorPosition="top" id="cars"
+                                                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                        rowsPerPageTemplate="6,12,16">
+
+<!--                                                <f:facet name="header">
+                                                    Products for Sale
+                                                </f:facet>-->
+
+                                                <div class="product-grid-item card" style="margin-bottom: 0">
+                                                    <div class="product-grid-item-top">
+                                                        <div>
+                                                            <i class="pi pi-tag product-category-icon"/>
+                                                            <span class="product-category">#{product.partcategoryId.categoryName}</span>
+                                                        </div>
+                                                    </div>
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                <img src="/ServaxoTest/uploads/parts/#{product.img1}" height="200px" width="300px" style="
+                                                        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+                                                        margin: 2rem 0;"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="product-name"><h3><b>#{product.partName}</b></h3></div> 
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <p style=" font-size: 14px">#{product.partDescription}</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <h:outputText value="#{product.price}" style=" font-size: 14px">
+                                                                    <f:convertNumber currencySymbol="₹" type="currency"/>
+                                                                </h:outputText>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <p:commandButton icon="pi pi-shopping-cart" styleClass="addToCart" value="Add To Cart"/>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+
+                                            </p:dataGrid>
+
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end Extra best seller -->
+                        </div>
+
+                        <div class="container">
+                            <div class="banners banners2">
+                                <div class="row">
+                                    
+                                    <div class="item col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <p>Advertisements</p>
+                                        <a href="https://www.flipkart.com/servo-servo1-futura-g-plus-5w-30-g-engine-oil-3-5-l-exciting-offer-inside-synthetic-blend/p/itm83f1a8d776b4a" target="_blank"><img src="https://rukminim1.flixcart.com/image/832/832/k4d27ww0/vehicle-lubricant/y/h/6/3-5-servo1-servo-original-imafna59mhnjsmgh.jpeg?q=70" height="280px" width="570px" alt="ad"/></a>  
+                                    </div>
+                                    <div class="item col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <p>&emsp;</p>
+                                        <a href="https://www.policybazaar.com/motor-insurance/car-insurance/"><img src="https://static.pbcdn.in/cdn/images/motor/car-insurance-save-upto-80_mobile.jpg" height="280px" width="570px" alt="ad"/></a>  
+                                    </div>      
+                                </div>
+                            </div>
+                        </div>
+                        <!-- So Categories -->
+                        <div class="row-cates">
+                            <div id="so_categories_11" class="so-categories module theme2 cates-layout1 container preset01-3 preset02-2 preset03-2 preset04-2 preset05-1">
+                                <div class="pre_text">
+                                    Top featured collections           
+                                </div>
+                                <h3 class="modtitle"><span>Shop by categories</span></h3>
+                                <div class="modcontent">
+                                    <div class="product card">
+                                        <h:form id="form2">
+                                            <p:dataGrid var="cat" value="#{userHome.allCats()}" columns="3" layout="grid"
+                                                        rows="6" paginator="true" paginatorPosition="top" id="cars"
+                                                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                        rowsPerPageTemplate="6,12,16">
+
+
+                                                <div class="product-grid-item card" style="margin-bottom: 0">
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                <img src="/ServaxoTest/uploads/partcategories/#{cat.categoryImg}" height="200px" width="300px" style="
+                                                        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+                                                        margin: 2rem 0;"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="product-name"><h3><b>#{cat.categoryName}</b></h3></div> 
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <p style=" font-size: 14px">#{cat.categoryDescription}</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <p:commandButton icon="pi pi-eye" styleClass="addToCart" value="See All Parts"/>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+
+                                            </p:dataGrid>
+
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end So Categories -->
+
+                        <div class="container">
+                            <div class="slider-brands module">
+                                <div class="pre_text">Top quality partners</div>
+                                <h3 class="modtitle"><span>Shop by Brands</span></h3>
+
+                                <h:form>
+                                    <div class="card">
+                                        <p:carousel value="#{userHome.allCompanies()}" var="comp" numVisible="3" numScroll="3"
+                                                    responsiveOptions="#{carouselView.responsiveOptions}">
+                                            
+                                            <div class="product-item">
+                                                <div class="product-item-content">
+                                                    <div class="p-mb-3">
+                                                        <img src="/ServaxoTest/uploads/companylogos/#{comp.companyLogo}" height="130" width="160"/>
+                                                    </div>
+<!--                                                    <div>
+                                                        <h4 class="p-mb-1">#{comp.companyName}</h4>
+                                                        <h6 class="p-mt-0 p-mb-3">
+                                                            <h:outputText value="#{comp.companyType}">
+                                                            </h:outputText>
+                                                        </h6>
+                                                    </div>-->
+                                                </div>
+                                            </div>
+                                        </p:carousel>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- //Main Container -->
+                <ui:include src="userFooter.xhtml"/>
+            </div>
+        </body>
+    </h:body>
+    <ui:include src="userScripts.xhtml"/>
+</html>
+

@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Register</title>
+        <ui:include src="userCss.xhtml"/>
+    </h:head>
+    <h:body>
+        <body class="common-home res layout-4"> 
+            <div id="wrapper" class="wrapper-fluid banners-effect-5">
+                <ui:include src="userHeader.xhtml"/>
+                <!-- Main Container  -->
+                <div class="main-container container">
+                    <ul class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-home"></i></a></li>
+                        <li><a href="#">Account</a></li>
+                        <li><a href="#">Register</a></li>
+                    </ul>
+
+                    <div class="row">
+                        <div id="content" class="col-sm-12">
+                            <h2 class="title">Register Account</h2>
+                            <p>If you already have an account with us, please login at the <h:link outcome="userLogin.jsf">login page</h:link>.</p>
+                            <h:form class="form-horizontal account-register clearfix">
+                                <p:growl id="messages" />
+                                <fieldset id="account">
+                                    <legend>Your Details</legend>
+                                    <div class="form-group required" style="display: none;">
+                                        <label class="col-sm-2 control-label">Customer Group</label>
+                                        <div class="col-sm-10">
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="customer_group_id" value="1" checked="checked"/> Default
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group required">
+                                        <label class="col-sm-2 control-label" for="input-firstname">Full Name</label>
+                                        <div class="col-sm-10">
+                                            <p:inputText styleClass="form-control" placeholder="Enter your full name" value="#{registerbean.newuser.name}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group required">
+                                        <label class="col-sm-2 control-label" for="input-email">E-Mail</label>
+                                        <div class="col-sm-10">
+                                            <p:inputText styleClass="form-control" placeholder="Enter your email address. Your email address will be your Username"
+                                                        value="#{registerbean.newuser.username}"
+                                                        required="true" requiredMessage="Please enter your e-mail address"
+                                               validatorMessage="Invalid e-mail address">
+                                                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                           </p:inputText>
+                                        </div>
+                                    </div>
+                                    <div class="form-group required">
+                                        <label class="col-sm-2 control-label" for="input-telephone">Contact No.</label>
+                                        <div class="col-sm-10">
+                                            <p:inputText styleClass="form-control" placeholder="Enter your contact number" value="#{registerbean.newuser.contact}"
+                                                        validatorMessage="please enter valid mobile number">
+                                               <f:validateRegex pattern="[0-9]{10}" />
+                                           </p:inputText>
+                                        </div>
+                                    </div>
+                                    <div class="form-group required">
+                                        <label class="col-sm-2 control-label" for="input-password">Password</label>
+                                        <div class="col-sm-10">
+                                            <p:password styleClass="form-control" placeholder="Enter your password"
+                                     value="#{registerbean.newuser.password}"
+                                  required="true" requiredMessage="please enter your password" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="buttons">
+                                    <div class="pull-right">By clicking <strong>Create Account</strong>, you agree to our terms of service and privacy statement.
+                                            <p:commandButton styleClass="btn btn-primary" value="Create Account" action="#{registerbean.registeruser()}" update="messages"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+                <!-- //Main Container -->
+            <br/>
+            <ui:include src="userFooter.xhtml"/>
+            </div>
+        </body>
+        <ui:include src="userScripts.xhtml"/>
+    </h:body>
+</html>
+

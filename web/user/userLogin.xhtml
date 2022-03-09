@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Login</title>
+        <ui:include src="userCss.xhtml"/>
+    </h:head>
+    <h:body>
+        <body class="common-home res layout-4"> 
+            <div id="wrapper" class="wrapper-fluid banners-effect-5">
+                <ui:include src="userHeader.xhtml"/>
+                <!-- Main Container  -->
+                <div class="main-container container">
+                    <ul class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-home"></i></a></li>
+                        <li><a href="#">Account</a></li>
+                        <li><a href="#">Login</a></li>
+                    </ul>
+
+                    <div class="row">
+                        <div id="content" class="col-sm-12">
+                            <div class="page-login">
+
+                                <div class="account-border">
+                                    <div class="row">
+                                        <div class="col-sm-6 new-customer">
+                                            <div class="well">
+                                                <h2><i class="fa fa-file-o" aria-hidden="true"></i> New Customer</h2>
+                                                <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.</p>
+                                            </div>
+                                            <div class="bottom-form">
+                                                <a href="userRegister.jsf" class="btn btn-default pull-right">Continue</a>
+                                            </div>
+                                        </div>
+
+                                        <h:form>
+                                            <p:growl id="messages" />
+                                            <div class="col-sm-6 customer-login">
+                                                <div class="well">
+                                                    <h2><i class="fa fa-file-text-o" aria-hidden="true"></i> Returning Customer</h2>
+                                                    <p><strong>I am a returning customer</strong></p>
+                                                    <div class="form-group">
+                                                        <label class="control-label " for="input-email">E-Mail Address</label>
+                                                        <p:inputText id="email" styleClass="form-control" placeholder="yourname@yourmail.com"
+                                                                    value="#{loginbean.username}"
+                                                                    required="true" requiredMessage="Please enter your e-mail address" 
+                                                           validatorMessage="Invalid e-mail address">
+                                                           <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                                       </p:inputText>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label " for="input-password">Password</label>
+                                                        <p:password styleClass="form-control" placeholder="Enter your password"
+                                                        value="#{loginbean.password}"
+                                                        required="true" requiredMessage="Please enter your password"/>
+                                                    </div>
+                                                </div>
+                                                <div class="bottom-form">
+                                                    <!--<a href="#" class="forgot">Forgotten Password</a>-->
+                                                    <p:commandButton ajax="false" styleClass="btn btn-default pull-right" value="Login" action="#{loginbean.login()}"/>
+                                                </div>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //Main Container -->
+                <br/>
+                <ui:include src="userFooter.xhtml"/>
+            </div>
+        </body>
+        <ui:include src="userScripts.xhtml"/>
+    </h:body>
+</html>
+

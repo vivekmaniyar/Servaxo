@@ -17,7 +17,10 @@ import java.util.Date;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,7 +32,12 @@ public class userserviceorderbean implements Serializable {
 
     @EJB UserLocal ul;
     @EJB AdminLocal al;
+    ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+    HttpSession session = (HttpSession) ec.getSession(true);
+    
+    ////////////////////////////////////////Change UserId//////////////////////////////////////////////////////////////
     Integer userId=3;
+    
     Integer serviceId,qty=1,total,pincode,companyId,modelId,serviceCartId;
 
     public Integer getServiceCartId() {
@@ -45,7 +53,15 @@ public class userserviceorderbean implements Serializable {
     DateFormat df = new SimpleDateFormat("dd-MM-YYYY HH:mm:ss");
     Date today = Calendar.getInstance().getTime();
     String datetime = df.format(today);
-    
+    TblServiceorder currentServiceOrder;
+
+    public TblServiceorder getCurrentServiceOrder() {
+        return currentServiceOrder;
+    }
+
+    public void setCurrentServiceOrder(TblServiceorder currentServiceOrder) {
+        this.currentServiceOrder = currentServiceOrder;
+    }
     public Integer getUserId() {
         return userId;
     }
@@ -151,9 +167,15 @@ public class userserviceorderbean implements Serializable {
     }
     
     public String addToCart(Integer serviceId){
-        total = 0;
-        this.ul.addToServiceCart(serviceId, userId, datetime, datetime);
-        return "";
+        if(session.getAttribute("username")!=null){
+            total = 0;
+            this.ul.addToServiceCart(serviceId, userId, datetime, datetime);
+            return "";
+        }
+        else{
+            return "userLogin.jsf?faces-redirect=true";
+        }
+        
     }
     
     public Collection<TblServicecart> viewServiceCart(){
@@ -177,7 +199,7 @@ public class userserviceorderbean implements Serializable {
         address2="";
         pincode=null;
         landmark="";
-        return "";
+        return "userServiceOrders.jsf?faces-redirect=true";
     }
     
     public Collection<TblServiceorder> allOrders(){
@@ -187,6 +209,15 @@ public class userserviceorderbean implements Serializable {
     public String removePart(Integer serviceCartId, Integer serviceId){
         this.ul.removeService(serviceCartId, serviceId, userId, datetime);
         return "";
+    }
+    
+    public String getDetails(){
+        return "userServiceOrderDetail.jsf?faces-redirect=true";
+    }
+    
+    public Collection<TblServicelist> orderDetails(Integer serviceOrderId){
+        total = 0;
+        return this.ul.serviceOrderDetails(serviceOrderId);
     }
     public userserviceorderbean() {
     }

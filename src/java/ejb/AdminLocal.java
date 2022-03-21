@@ -110,5 +110,5 @@ public interface AdminLocal {
     
     //Users
     Collection<Usermaster> getAllUsers();
-    Integer getUserId(String userName);
+    Collection<Usermaster> getUsersByName(String userName);
 }

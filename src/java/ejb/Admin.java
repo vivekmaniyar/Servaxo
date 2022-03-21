@@ -17,6 +17,7 @@ import entities.TblState;
 import entities.Usermaster;
 import javax.ejb.Stateless;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -548,9 +549,9 @@ public class Admin implements AdminLocal {
     }
 
     @Override
-    public Integer getUserId(String username) {
-        Usermaster u = (Usermaster) em.createNamedQuery("Usermaster.findByName").setParameter("name", username).getResultList();
-        System.out.println(u.getUserId());
-        return u.getUserId();
+    public Collection<Usermaster> getUsersByName(String userName) {
+        List u = em.createNamedQuery("Usermaster.findByUsername").setParameter("username", userName).getResultList();
+        return users;
     }
+    
 }

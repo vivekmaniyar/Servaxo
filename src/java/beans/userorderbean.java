@@ -35,11 +35,14 @@ public class userorderbean implements Serializable {
     ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
     HttpSession session = (HttpSession) ec.getSession(true);
     String userName = (String) session.getAttribute("username");
+    
+    /////////////////////////////////////////Change UserId///////////////////////////////////////////////////////
+    
     Integer userId = 3;
 //    Integer userId = al.getUserId(userName);
     Integer partId,qty=1,total,cityId,pincode;
     TblOrder currentOrder;
-
+    String username = (String) session.getAttribute("username");
     public TblOrder getCurrentOrder() {
         return currentOrder;
     }
@@ -117,8 +120,16 @@ public class userorderbean implements Serializable {
     String datetime = df.format(today);
     
     public String addToCart(Integer partId){
-        this.ul.addToCart(partId, userId, qty, datetime, datetime);
-        return "";
+        if(session.getAttribute("username")!=null){
+//           System.out.println(userName);
+            this.ul.addToCart(partId, userId, qty, datetime, datetime);
+            return ""; 
+        }
+        else
+        {
+            return "userLogin.jsf?faces-redirect=true";
+        }
+        
     }
 
     public Integer getPartId() {
@@ -144,7 +155,7 @@ public class userorderbean implements Serializable {
     
     public String placeOrder(){
         this.ul.placeOrder(userId, cityId, "N", "COD", address1, address2, landmark, pincode, "Pending", datetime, datetime);
-        return "";
+        return "userOrders?faces-redirect=true";
     }
     
     public Collection<TblOrder> allOrders(){

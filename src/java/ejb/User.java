@@ -246,4 +246,23 @@ EntityManager em;
         List od = em.createNamedQuery("TblOrderdetail.findByOrderId").setParameter("orderId", orderId).getResultList();
         return od;
     }
+
+    @Override
+    public Collection<TblServicelist> serviceOrderDetails(Integer serviceOrderId) {
+        List sod = em.createNamedQuery("TblServicelist.findByUserVehicleId").setParameter("userVehicleId", serviceOrderId).getResultList();
+        return sod;
+    }
+
+    @Override
+    public Collection<TblParts> activeParts() {
+        List parts = em.createNamedQuery("TblParts.findByIsactive").setParameter("isactive", "yes").getResultList();
+        return parts;
+    }
+
+    @Override
+    public Collection<TblServices> activeServices() {
+        List services = em.createNamedQuery("TblServices.findByIsactive").setParameter("isactive", "yes").getResultList();
+        return services;
+    }
+
 }

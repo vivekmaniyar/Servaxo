@@ -115,7 +115,7 @@ public class loginbean implements Serializable{
                 //return "dashboard.jsf?faces-redirect=true";
             }else if(securitycontext.isCallerInRole("user")){
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Login Successful"));
-                ec.redirect("/ServaxoTest/index.jsf");
+                ec.redirect("/ServaxoTest/user/home.jsf");
                 //return "/index.jsf";
             }else{
                 String message = "Either username or password is wrong";
@@ -136,6 +136,10 @@ public class loginbean implements Serializable{
     public String logout() throws ServletException{
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         request.logout();
+        return "userLogin.jsf";
+    }
+    
+    public String redirectToLogin(){
         return "loginAdmin.jsf?faces-redirect=true";
     }
 }

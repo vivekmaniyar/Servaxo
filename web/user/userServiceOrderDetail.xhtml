@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Order Detail</title>
+        <ui:include src="userCss.xhtml"/>
+    </h:head>
+    <h:body class="res layout-1 layout-subpage">
+        <div id="wrapper" class="wrapper-fluid banners-effect-5">
+            <ui:include src="userHeader.xhtml"/>
+            <!-- Main Container  -->
+            <div class="main-container container">
+                <ul class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-home"></i></a></li>
+                    <li><a href="#">Service Infomation</a></li>
+                </ul>
+
+                <div class="row">
+                    <!--Middle Part Start-->
+                    <div id="content" class="col-sm-12">
+                        <h2 class="title">Service Information</h2>
+
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <td colspan="2" class="text-left">Service Order Details</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="width: 50%;" class="text-left"> <b>Order ID:</b> #{userserviceorderbean.currentServiceOrder.serviceorderId}
+                                        <br/>
+                                        <b>Date Added:</b> #{userserviceorderbean.currentServiceOrder.orderdatetime}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <td style="width: 50%; vertical-align: top;" class="text-left">Pickup Address</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-left">#{userserviceorderbean.currentServiceOrder.userId.name}
+                                        <br/>#{userserviceorderbean.currentServiceOrder.addressline1}
+                                        <br/>#{userserviceorderbean.currentServiceOrder.addressline2}
+                                        <br/>#{userserviceorderbean.currentServiceOrder.landmark}
+                                        <br/>#{userserviceorderbean.currentServiceOrder.pincode}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="table-responsive">
+                            <p:dataTable var="dtl" value="#{userserviceorderbean.orderDetails(userserviceorderbean.currentServiceOrder.serviceorderId)}">
+                                <p:column headerText="Service Name">
+                                    <h:outputLabel value="#{dtl.tblServices.serviceName}"/>
+                                </p:column>
+                                <p:column headerText="Vehicle Model" >
+                                    <h:outputLabel value="#{dtl.tblServiceorder.modelId.modelName}"/>
+                                </p:column>
+                                <p:column headerText="Vehicle Number" >
+                                    <h:outputLabel value="#{dtl.tblServiceorder.vehicleNo}"/>
+                                </p:column>
+                                <p:column headerText="Price" >
+                                    <h:outputLabel value="₹ #{dtl.tblServices.servicePrice}"/>
+                                    <input type="hidden" value="#{userserviceorderbean.total = userserviceorderbean.total + dtl.tblServices.servicePrice}" name="txtTot" id="txtTot"/>
+                                </p:column>
+                            </p:dataTable>
+                            
+                            <br/>
+                        </div>
+                        <h3>Order History</h3>
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <td class="text-left">Total</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="text-right">
+                                    <td class="text-left">₹ #{userserviceorderbean.total}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="buttons clearfix">
+                            <div class="pull-left"><a class="btn btn-primary" href="userServiceOrders.jsf">Back</a>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <!--Middle Part End-->
+                    <!--Right Part Start -->
+
+                    <!--Right Part End -->
+                </div>
+            </div>
+            <!-- //Main Container -->
+            <ui:include src="userFooter.xhtml"/>
+        </div>
+        <ui:include src="userScripts.xhtml"/>
+        <p:dataTable var="part" value="#{userorderbean.currentOrder}">
+            <p:column headerText="Part Name">
+
+            </p:column>
+        </p:dataTable>
+    </h:body>
+</html>
+

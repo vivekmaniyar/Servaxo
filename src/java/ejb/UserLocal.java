@@ -7,8 +7,11 @@ package ejb;
 import entities.TblCart;
 import entities.TblOrder;
 import entities.TblOrderdetail;
+import entities.TblParts;
 import entities.TblServicecart;
+import entities.TblServicelist;
 import entities.TblServiceorder;
+import entities.TblServices;
 import java.util.Collection;
 import javax.ejb.Local;
 
@@ -23,6 +26,9 @@ public interface UserLocal {
     void registerUser(Integer groupId, String username, String password, String name, String contact, String regDate, String updatedAt);
 
 //CART MODULE
+    
+    Collection<TblParts> activeParts();
+    
     void addToCart(Integer partId, Integer userId, Integer qty, String createdAt, String updatedAt);
 
     void removePart(Integer cart_id, Integer partId, Integer userId, Integer qty, String updatedAt);
@@ -30,8 +36,12 @@ public interface UserLocal {
     void emptyCart(Integer user_id);
     
     Collection<TblCart> viewCart(Integer userId);
+    
 
 //SERVICE CART
+    
+    Collection<TblServices> activeServices();
+    
     void addToServiceCart(Integer serviceId, Integer userId, String createdAt, String updatedAt);
 
     void removeService(Integer servicecart_id, Integer serviceId, Integer userId, String updatedAt);
@@ -54,4 +64,5 @@ public interface UserLocal {
     void addServiceOrder(Integer userId, Integer modelId, String vehicleNo, String remark, String pickupDate, String addressline1, String addressline2, Integer pincode, String landmark, String status, String orderDate, String updatedAt);
     Collection<TblServiceorder> getUserServiceOrders(Integer userId);
     void cancelServiceOrder(Integer serviceOrderId, Integer userId, String status);
+    Collection<TblServicelist> serviceOrderDetails(Integer serviceOrderId);
 }

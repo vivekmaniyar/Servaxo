@@ -24,6 +24,7 @@
                     <div id="content" class="col-sm-12">
                         <h2 class="title">My Service Orders</h2>
                         <div class="table-responsive form-group">
+                            <h:form>
                             <p:dataTable id="cart" var="cart" value="#{userserviceorderbean.allOrders()}">
                                 <p:column headerText="Order Id">
                                     <h:outputText style="font-size: 16px;" value="#{cart.serviceorderId}" />
@@ -32,12 +33,18 @@
                                     <h:outputText style="font-size: 16px;" value="#{cart.orderdatetime}" />
                                 </p:column>
                                 <p:column headerText="Total payment">
-                                    <h:outputText style="font-size: 16px;" value="#{cart.totalPayment}" />
+                                    <h:outputText style="font-size: 16px;" value="₹ #{cart.totalPayment}" />
                                 </p:column>
                                 <p:column headerText="Status">
                                     <h:outputText style="font-size: 16px;" value="#{cart.status}" />
                                 </p:column>
+                                <p:column headerText="View">
+                                    <h:commandButton class="btn btn-primary" value="View" action="#{userserviceorderbean.getDetails}">
+                                        <f:setPropertyActionListener value="#{cart}" target="#{userserviceorderbean.currentServiceOrder}"/>
+                                    </h:commandButton>
+                                </p:column>
                             </p:dataTable>
+                            </h:form>
                         </div>
                       <h:form>
                         <div class="buttons">

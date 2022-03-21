@@ -6,6 +6,7 @@ package beans;
 
 import client.adminClient;
 import ejb.AdminLocal;
+import ejb.UserLocal;
 import entities.TblCompany;
 import entities.TblModel;
 import entities.TblPartcategory;
@@ -37,6 +38,7 @@ public class userHome implements Serializable {
     
     adminClient arc = new adminClient();
     @EJB AdminLocal al;
+    @EJB UserLocal ul;
     DateFormat df = new SimpleDateFormat("DD-MM-YYYY HH:mm:ss");
     Date today = Calendar.getInstance().getTime();
     String datetime = df.format(today);
@@ -126,7 +128,7 @@ public class userHome implements Serializable {
 //        res =   arc.getAllParts(Response.class);
 //        parts = res.readEntity(gParts);
 //        return parts;
-        return this.al.getAllParts();
+        return this.ul.activeParts();
     }
     
     public Collection<TblPartcategory> allCats(){
@@ -142,7 +144,7 @@ public class userHome implements Serializable {
     }
 
     public Collection<TblServices> allServices(){
-        return this.al.getAllServices();
+        return this.ul.activeServices();
     }
     public userHome() {
     }

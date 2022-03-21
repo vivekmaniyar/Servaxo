@@ -50,7 +50,10 @@
         <display-name>User Role</display-name>
         <web-resource-collection>
             <web-resource-name>User Folder</web-resource-name>
-            <url-pattern>/user/home.jsf</url-pattern>
+            <url-pattern>/user/userOrders.jsf</url-pattern>
+            <url-pattern>/user/userServiceOrders.jsf</url-pattern>
+            <url-pattern>/user/userCart.jsf</url-pattern>
+            <url-pattern>/user/serviceCart.jsf</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>user</role-name>

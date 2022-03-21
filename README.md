@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="" alt="Servaxo">
+  <img src="web/user/image/catalog/logo.png" alt="Servaxo">
 </p>
 
 ## About Servaxo
